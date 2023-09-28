@@ -16,16 +16,16 @@ class LocalizationMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if 'X-localization' header is present
-        if (!$request->hasHeader('X-localization')) {
-        return response()->json([
-            'status' => 'failed',
-            'message' =>trans('msg.localization'),
-        ], 400);
-        }
+        // Check if 'language' header is present
+        // if (!$request->hasHeader('language')) {
+        //     return response()->json([
+        //         'status' => 'failed',
+        //         'message' =>trans('msg.localization'),
+        //     ], 400);
+        // }
 
          // Check header request and determine localization
-         $local = ($request->hasHeader('X-localization')) ? ($request->header('X-localization') ?: 'en') : 'en';
+         $local = ($request->hasHeader('language')) ? ($request->header('language') ?: 'en') : 'en';
  
          // Set Laravel localization
          App::setLocale($local);
